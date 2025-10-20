@@ -1,0 +1,60 @@
+<div class="card container d-flex justify-content-center align-items-center mt-5">
+    <div>
+        <div class="card-body">
+            <h2 class="card-title mb-4 fw-semibold d-flex align-items-center">
+                <i class="bi bi-clipboard-check text-primary me-3"></i>
+                Görev Yönetimi
+            </h2>
+            <h4 class="text-muted">Bugün neler başaracaksın?</h4>
+            <div class="progress mt-3">
+                <div class="progress-bar bg-success" role="progressbar" [style.width.%]="progress">
+                    {{progress}}%
+                </div>
+            </div>
+            <h6 class="text-muted fst-italic fw-light mt-2">Küçük adımlar büyük değişim getirir!</h6>
+            <div class="mt-4 align-items-center justify-content-center">
+                <div *ngFor="let task of tasks"
+                    class="d-flex justify-content-between align-items-center p-3 mb-3 rounded shadow-sm"
+                    [ngClass]="{'border-start border-success border-4': task.isCompleted,'border-start border-warning border-4': !task.isCompleted}"
+                    style="background-color: #fff;">
+                    <div class="flex-grow-1 me-3">
+                    <div *ngIf="editingTaskId === task.id; else displayMode">
+                        <input type="text"class="form-control mb-2" [(ngModel)]="editTitle"/>
+                        <input type="text"class="form-control mb-2" [(ngModel)]="editDescription"/>
+                        <button class="btn btn-sm btn-success me-2" (click)="saveEdit(task)">Kaydet</button>
+                        <button class="btn btn-sm btn-secondary" (click)="cancelEdit()">İptal</button>
+                    </div>
+                    <ng-template #displayMode>
+                        <h5 class="fw-semibold mb-1 text-capitalize">{{task.title}}</h5>
+                        <div class="text-muted mb-0 small">{{task.description}}</div>
+                    </ng-template>
+                        </div>
+
+                        <div>
+                        <span (click)="toggleComplete(task)" *ngIf="task.isCompleted" class="badge bg-success p-2 px-3" style="cursor: pointer; transition: 0.3s;" title="Durumu Değiştir">
+                            <i class="bi bi-check-circle me-1"></i> Tamamlandı
+                        </span>
+                        <span  (click)="toggleComplete(task)" *ngIf="!task.isCompleted" class="badge bg-warning p-2 px-3" style="cursor: pointer; transition: 0.3s;" title="Durumu Değiştir">
+                            <i class="bi bi-clock me-1"></i> Devam Ediyor
+                        </span>
+                        <button class="btn btn-sm mb-5" (click)="startEditing(task)" title="Görevi Düzenle">
+                            <i class="bi bi-pencil" style="color: #0d6efd;"></i>
+                        </button>
+                        <button class="btn btn-sm mb-5" (click)="deleteTask(task.id)" title="Görevi Sil">
+                            <i class="bi bi-trash" style="color: red;"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="mt-4 p-3 rounded shadow-sm">
+                <h5 class="fw-semibold mb-3 text-success text-center">Yeni Görev Ekle</h5>
+                <input type="text" class="form-control mb-2" placeholder="Görev başlığı" [(ngModel)]="newTaskTitle">
+
+                <input type="text" class="form-control mb-3" placeholder="Açıklama" [(ngModel)]="newTaskDescription">
+
+                <button class="btn btn-primary w-100" (click)="addTask()">Ekle</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -23,7 +23,7 @@ export class RegisterComponent {
       localStorage.setItem('token', response.token);
       localStorage.setItem('role', response.role);
       alert('Kayıt başarılı!');
-      this.router.navigate(['/login']);
+      this.router.navigate(['/dashboard']);
     },
     error: (err) => {
         alert(err.error?.message || 'kayıt başarısız');

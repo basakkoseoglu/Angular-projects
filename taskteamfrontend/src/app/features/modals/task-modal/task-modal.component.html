@@ -1,0 +1,52 @@
+<div class="modal-header">
+    <h4 class="modal-title fw-bold">Yeni Görev Oluştur</h4>
+    <button type="button" class="btn-close" aria-label="Kapat" (click)="activeModal.dismiss()"></button>
+</div>
+
+<div class="modal-body">
+    <form>
+        <div class="mb-3">
+            <label class="form-label">Görev Başlığı*</label>
+            <input type="text" class="form-control" placeholder="Görev başlığını girin" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Açıklama</label>
+            <textarea class="form-control" rows="5" placeholder="Görev açıklaması (opsiyonel)"></textarea>
+        </div>
+        <div class="d-flex gap-2 mb-3">
+            <div class="flex-fill">
+            <label class="form-label">Durum *</label>
+            <select class="form-select">
+                <option value="yeni">Yeni</option>
+                <option value="devamediyor">Devam Ediyor</option>
+                <option value="tamamlandı">Tamamlandı</option>
+            </select>
+        </div>
+        <div class="flex-fill">
+            <label class="form-label">Öncelik *</label>
+            <select class="form-select">
+                <option value="orta">Orta</option>
+                <option value="yüksek">Yüksek</option>
+                <option value="düşük">Düşük</option>
+            </select>
+        </div>
+        </div>
+       <div class="mb-3">
+            <label class="form-label">Atanan Kişi</label>
+            <select class="form-select">
+                <option value="atamayapılmadı">Atama yapılmadı</option>
+                <option value="basak">Başak</option>
+            </select>
+        </div>
+        <div class="mb-3">
+                <label class="form-label">Oluşturma Tarihi</label>
+                <input type="date" class="form-control" placeholder="Bitiş Tarihi" />
+            </div>
+
+    </form>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-secondary" (click)="activeModal.dismiss()">İptal</button>
+    <button class="btn btn-primary" (click)="activeModal.close()">Oluştur</button>
+</div>

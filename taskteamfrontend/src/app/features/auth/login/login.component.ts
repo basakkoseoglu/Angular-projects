@@ -16,8 +16,12 @@ constructor(private authService:AuthService,private router:Router) { }
 onSubmit() {
   this.authService.login({email:this.email, password:this.password}).subscribe({
     next: (response) => {
+
+      console.log('Login yanıtı:', response);
+      
       localStorage.setItem('token', response.token);
       localStorage.setItem('role', response.role);
+      localStorage.setItem('firstName', response.firstName);
       alert('Login başarılı!');
       this.router.navigate(['/dashboard']);
     },

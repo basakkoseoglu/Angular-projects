@@ -16,7 +16,7 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'projects', component: ProjectsComponent },
       { path: 'tasks', component: TasksComponent },
-      { path: 'persons', component: PersonsComponent },
+      { path: 'persons', component: PersonsComponent,canActivate: [AuthGuard],data: { requiredRole: 'Admin' }},
       { path: '', redirectTo: 'home', pathMatch: 'full' }
     ]
   }

@@ -11,15 +11,13 @@ export class LayoutComponent implements OnInit {
   firstName: string | null = '';
   role: string | null = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) { }
   ngOnInit(): void {
     this.firstName = localStorage.getItem('firstName');
     this.role = localStorage.getItem('role');
   }
-logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
-    localStorage.removeItem('firstName');
+  logout() {
+    this.authService.logout();
     this.router.navigate(['/auth/login']);
   }
 }

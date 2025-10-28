@@ -1,40 +1,57 @@
 <div class="modal-header">
-    <h4 class="modal-title fw-bold">Yeni Proje Oluştur</h4>
+    <h4 class="modal-title fw-bold">{{ projectId ? 'Projeyi Düzenle' : 'Yeni Proje' }}</h4>
     <button type="button" class="btn-close" aria-label="Kapat" (click)="activeModal.dismiss()"></button>
 </div>
 
 <div class="modal-body">
-    <form>
+    <form [formGroup]="projectForm" (ngSubmit)="createProject()">
         <div class="mb-3">
             <label class="form-label">Proje Adı *</label>
-            <input type="text" class="form-control" placeholder="Proje adını girin" />
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Açıklama</label>
-            <textarea class="form-control" rows="5" placeholder="Proje açıklaması (opsiyonel)"></textarea>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Durum *</label>
-            <select class="form-select">
-                <option value="aktif">Aktif</option>
-                <option value="pasif">Pasif</option>
-            </select>
-        </div>
-        <div class="mb-3 d-flex gap-2">
-            <div class="flex-fill">
-                <label class="form-label">Başlangıç Tarihi</label>
-                <input type="date" class="form-control" placeholder="Başlangıç Tarihi" />
-            </div>
-            <div class="flex-fill">
-                <label class="form-label">Bitiş Tarihi</label>
-                <input type="date" class="form-control" placeholder="Bitiş Tarihi" />
+            <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Proje adını girin" 
+                formControlName="ProjectName" 
+            />
+            <div *ngIf="projectForm.get('ProjectName')?.touched && projectForm.get('ProjectName')?.invalid" 
+                 class="text-danger mt-1">
+                Proje adı zorunludur.
             </div>
         </div>
 
+        <div class="mb-3">
+            <label class="form-label">Açıklama</label>
+            <textarea 
+                class="form-control" 
+                rows="5" 
+                placeholder="Proje açıklaması (opsiyonel)" 
+                formControlName="ProjectDescription">
+            </textarea>
+        </div>
+    
+        <div class="mb-3 d-flex gap-2">
+            <div class="flex-fill">
+                <label class="form-label">Başlangıç Tarihi</label>
+                <input type="date" class="form-control" formControlName="StartDate" />
+            </div>
+            <div class="flex-fill">
+                <label class="form-label">Bitiş Tarihi</label>
+                <input type="date" class="form-control" formControlName="EndDate" />
+            </div>
+        </div>
     </form>
 </div>
 
 <div class="modal-footer">
-    <button class="btn btn-secondary" (click)="activeModal.dismiss()">İptal</button>
-    <button class="btn btn-primary" (click)="activeModal.close()">Oluştur</button>
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">
+        İptal
+    </button>
+    <button 
+        type="button" 
+        class="btn btn-primary" 
+        [disabled]="loading || projectForm.invalid" 
+        (click)="createProject()">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+        {{ projectId ? 'Güncelle' : 'Kaydet' }}
+    </button>
 </div>

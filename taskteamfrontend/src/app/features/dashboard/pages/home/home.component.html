@@ -1,91 +1,99 @@
 <div class="dashboard-container p-4 bg-light min-vh-100">
     <h2 class="fs-3 fw-bold mb-1">Dashboard</h2>
-    <p class="text-secondary mb-4">Proje ve görev istatistiklerinize genel bakış</p>
+    <p class="text-secondary mb-4">Size atanmış görevlerin genel görünümü</p>
 
+    <!-- cardlar -->
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3 mb-4">
-
+        <!-- proje -->
         <div class="col">
-            <div class="card border-0 shadow-sm h-100">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <div
-                            class="bg-primary bg-opacity-10 text-primary fs-3 me-3 pe-3 ps-3 pt-2 pb-2 rounded-3 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-folder2"></i>
-                        </div>
-                        <div class="text-primary fs-3 p-2 rounded-3 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-graph-up-arrow"></i>
-                        </div>
+            <div class="card border-0 shadow-sm h-100 stat-card">
+                <div class="card-body text-center">
+                    <div class="icon-wrapper bg-primary bg-opacity-10 text-primary mx-auto">
+                        <i class="bi bi-folder2"></i>
                     </div>
-                    <h3 class="fs-4 fw-bold mb-2">0</h3>
-                    <p class="fw-medium text-dark mb-1">Aktif Proje</p>
-                    <span class="small text-muted">Toplam: 0</span>
+                    <h3 class="fs-2 fw-bold mt-3">{{ projectCount }}</h3>
+                    <p class="fw-semibold text-dark mb-1">Toplam Proje</p>
                 </div>
             </div>
         </div>
 
+        <!-- tamamlanan görev -->
         <div class="col">
-            <div class="card border-0 shadow-sm h-100">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <div class="bg-success bg-opacity-10 text-success fs-3 me-3 pe-3 ps-3 pt-2 pb-2 rounded-3 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-check2-square"></i>
-                        </div>
-                        <div class="text-success fs-3 p-2 rounded-3 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-graph-up-arrow"></i>
-                        </div>
+            <div class="card border-0 shadow-sm h-100 stat-card">
+                <div class="card-body text-center">
+                    <div class="icon-wrapper bg-success bg-opacity-10 text-success mx-auto">
+                        <i class="bi bi-check2-square"></i>
                     </div>
-                    <h3 class="fs-4 fw-bold mb-2">0</h3>
-                    <p class="fw-medium text-dark mb-1">Tamamlanan Görev</p>
-                    <span class="small text-muted">Toplam: 0</span>
+                    <h3 class="fs-2 fw-bold mt-3">{{ completedTaskCount }}</h3>
+                    <p class="fw-semibold text-dark mb-1">Tamamlanan Görev</p>
                 </div>
             </div>
         </div>
 
+        <!-- devam eden görev -->
         <div class="col">
-            <div class="card border-0 shadow-sm h-100">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <div class="bg-warning bg-opacity-10 text-warning fs-3 me-3 pe-3 ps-3 pt-2 pb-2 rounded-3  d-flex align-items-center justify-content-center">
-                            <i class="bi bi-clock"></i>
-                        </div>
-                        <div class="text-warning fs-3 p-2 rounded-3 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-exclamation-circle"></i>
-                        </div>
+            <div class="card border-0 shadow-sm h-100 stat-card">
+                <div class="card-body text-center">
+                    <div class="icon-wrapper bg-warning bg-opacity-10 text-warning mx-auto">
+                        <i class="bi bi-hourglass-split"></i>
                     </div>
-                    <h3 class="fs-4 fw-bold mb-2">0</h3>
-                    <p class="fw-medium text-dark mb-1">Devam Eden Görev</p>
-                    <span class="small text-muted">İşlem Bekliyor</span>
+                    <h3 class="fs-2 fw-bold mt-3">{{ inProgressTaskCount }}</h3>
+                    <p class="fw-semibold text-dark mb-1">Devam Eden Görev</p>
                 </div>
             </div>
         </div>
 
+        <!-- aktif personel -->
         <div class="col">
-            <div class="card border-0 shadow-sm h-100">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <div class="bg-opacity-10 text-purple fs-3 me-3 pe-3 ps-3 pt-2 pb-2 rounded-3  d-flex align-items-center justify-content-center"
-                            style="background-color: rgba(168, 85, 247, 0.1);">
-                            <i class="bi bi-people"></i>
-                        </div>
-                         <div class="text-purple fs-3 p-2 rounded-3 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-graph-up-arrow"></i>
-                        </div>
+            <div class="card border-0 shadow-sm h-100 stat-card">
+                <div class="card-body text-center">
+                    <div class="icon-wrapper text-purple mx-auto" style="background-color: rgba(168, 85, 247, 0.1);">
+                        <i class="bi bi-people"></i>
                     </div>
-                    <h3 class="fs-4 fw-bold mb-1">0</h3>
-                    <p class="fw-medium text-dark mb-1">Aktif Personel</p>
-                    <span class="small text-muted">Ekip Üyeleri</span>
+                    <h3 class="fs-2 fw-bold mt-3">{{ activePersonnelCount }}</h3>
+                    <p class="fw-semibold text-dark mb-1">Aktif Personel</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="card border-0 shadow-sm">
+    <!--  atanan görevler -->
+    <div class="card border-0 shadow-sm mt-4">
         <div class="card-body p-4">
-            <h4 class="fw-semibold mb-3">Son Görevler</h4>
-            <div class="text-center text-muted py-4">
-                <i class="bi bi-check2-square fs-1 d-block mb-2"></i>
-                <p class="mb-0">Henüz görev bulunmuyor</p>
+            <h4 class="fw-semibold mb-4">Size Atanan Son Görevler</h4>
+
+            <div *ngIf="loading" class="text-center text-muted py-4">
+                <div class="spinner-border text-primary" role="status"></div>
+                <p class="mt-3">Yükleniyor...</p>
             </div>
+
+            <div *ngIf="!loading && recentTasks.length === 0" class="text-center text-muted py-5">
+                <i class="bi bi-person-workspace fs-1 d-block mb-2"></i>
+                <p class="mb-0">Henüz size atanmış görev bulunmuyor.</p>
+            </div>
+
+            <div *ngIf="!loading && recentTasks.length > 0" class="row g-3">
+                <div *ngFor="let task of recentTasks" class="col-12 col-md-6 col-lg-4">
+                    <div class="card border-0 shadow-sm h-100 task-mini-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="fw-bold mb-0">{{ task.taskTitle }}</h5>
+                                <span class="badge" [ngClass]="getBadgeClass(task.priority)">
+                                    {{ task.priority }}
+                                </span>
+                            </div>
+                            <p class="text-secondary small mb-3">{{ task.taskDescription || 'Açıklama yok' }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">{{ task.createdAt | date:'dd/MM/yyyy' }}</small>
+                                <span class="badge rounded-pill"
+                                    style="background-color: #f8f9fa; color: #667eea; font-weight: 600;">{{ task.status
+                                    || 'Yeni' }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

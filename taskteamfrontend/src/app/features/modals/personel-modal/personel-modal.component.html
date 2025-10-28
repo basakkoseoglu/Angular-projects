@@ -1,44 +1,55 @@
 <div class="modal-header">
-    <h4 class="modal-title fw-bold">Yeni Personel Ekle</h4>
-    <button type="button" class="btn-close" aria-label="Kapat" (click)="activeModal.dismiss()"></button>
+  <h5 class="modal-title">
+    {{ isEditMode ? 'Personel Güncelle' : 'Yeni Personel Ekle' }}
+  </h5>
+  <button type="button" class="btn-close" (click)="activeModal.dismiss()"></button>
 </div>
 
 <div class="modal-body">
-    <form>
-        <div class="row g-3 mb-3">
-            <div class="col-md-6">
-                <label class="form-label">Personel Ad *</label>
-                <input type="text" class="form-control" name="first_name" required>
-            </div>
-            <div class="col-md-6">
-                <label class="form-label">Personel Soyad *</label>
-                <input type="text" class="form-control" name="last_name" required>
-            </div>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">E-posta *</label>
-            <input type="text" class="form-control" name="last_name" required placeholder="ornek@gmail.com">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Pozisyon/Rol *</label>
-            <input type="text" class="form-control" name="last_name" required placeholder="ornek@gmail.com">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Maaş (₺) *</label>
-            <input type="number" class="form-control" name="salary" step="0.01" min="0" placeholder="örn. 25000">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Durum *</label>
-            <select class="form-select">
-                <option value="aktif">Aktif</option>
-                <option value="pasif">Pasif</option>
-            </select>
-        </div>
+  <form [formGroup]="personelForm" (ngSubmit)="submitForm()">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label>Ad</label>
+        <input type="text" class="form-control" formControlName="firstName" />
+      </div>
+      <div class="col-md-6">
+        <label>Soyad</label>
+        <input type="text" class="form-control" formControlName="lastName" />
+      </div>
+      <div class="col-md-6">
+        <label>Email</label>
+        <input type="email" class="form-control" formControlName="email" />
+      </div>
+      <div class="col-md-6">
+        <label>Rol</label>
+        <input type="text" class="form-control" formControlName="role" />
+      </div>
+      <div class="col-md-6">
+        <label>Maaş</label>
+        <input type="number" class="form-control" formControlName="salary" />
+      </div>
 
-    </form>
+      <!-- Şifre sadece eklemede görünür -->
+      <div class="col-md-6" *ngIf="!isEditMode">
+        <label>Şifre</label>
+        <input type="password" class="form-control" formControlName="password" />
+      </div>
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+  </form>
 </div>
 
 <div class="modal-footer">
-    <button class="btn btn-secondary" (click)="activeModal.dismiss()">İptal</button>
-    <button class="btn btn-primary" (click)="activeModal.close()">Oluştur</button>
+  <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">İptal</button>
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="loading"
+    (click)="submitForm()"
+  >
+    <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+    {{ isEditMode ? 'Güncelle' : 'Ekle' }}
+  </button>
 </div>
+

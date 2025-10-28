@@ -1,52 +1,68 @@
 <div class="modal-header">
-    <h4 class="modal-title fw-bold">Yeni Görev Oluştur</h4>
-    <button type="button" class="btn-close" aria-label="Kapat" (click)="activeModal.dismiss()"></button>
+  <h5 class="modal-title">{{ isEditMode ? 'Görev Güncelle' : 'Yeni Görev Ekle' }}</h5>
+  <button type="button" class="btn-close" (click)="activeModal.dismiss()"></button>
 </div>
 
 <div class="modal-body">
-    <form>
-        <div class="mb-3">
-            <label class="form-label">Görev Başlığı*</label>
-            <input type="text" class="form-control" placeholder="Görev başlığını girin" />
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Açıklama</label>
-            <textarea class="form-control" rows="5" placeholder="Görev açıklaması (opsiyonel)"></textarea>
-        </div>
-        <div class="d-flex gap-2 mb-3">
-            <div class="flex-fill">
-            <label class="form-label">Durum *</label>
-            <select class="form-select">
-                <option value="yeni">Yeni</option>
-                <option value="devamediyor">Devam Ediyor</option>
-                <option value="tamamlandı">Tamamlandı</option>
-            </select>
-        </div>
-        <div class="flex-fill">
-            <label class="form-label">Öncelik *</label>
-            <select class="form-select">
-                <option value="orta">Orta</option>
-                <option value="yüksek">Yüksek</option>
-                <option value="düşük">Düşük</option>
-            </select>
-        </div>
-        </div>
-       <div class="mb-3">
-            <label class="form-label">Atanan Kişi</label>
-            <select class="form-select">
-                <option value="atamayapılmadı">Atama yapılmadı</option>
-                <option value="basak">Başak</option>
-            </select>
-        </div>
-        <div class="mb-3">
-                <label class="form-label">Oluşturma Tarihi</label>
-                <input type="date" class="form-control" placeholder="Bitiş Tarihi" />
-            </div>
+  <form [formGroup]="taskForm" (ngSubmit)="submitForm()">
+    <!-- proje -->
+    <div class="mb-3">
+      <label>Proje *</label>
+      <select class="form-select" formControlName="projectId">
+        <option value="">Proje seçin...</option>
+        <option *ngFor="let p of projects" [value]="p.id">{{ p.projectName }}</option>
+      </select>
+    </div>
 
-    </form>
+    <!-- personel -->
+    <div class="mb-3">
+      <label>Atanacak Personel *</label>
+      <select class="form-select" formControlName="assignedPersonnelId">
+        <option value="">Personel seçin...</option>
+        <option *ngFor="let per of personnels" [value]="per.id">
+          {{ per.firstName }} {{ per.lastName }}
+        </option>
+      </select>
+    </div>
+
+    <!-- başlık -->
+    <div class="mb-3">
+      <label>Görev Başlığı *</label>
+      <input type="text" class="form-control" formControlName="taskTitle" />
+    </div>
+
+    <!-- açıklama -->
+    <div class="mb-3">
+      <label>Görev Açıklaması *</label>
+      <textarea class="form-control" formControlName="taskDescription" rows="3"></textarea>
+    </div>
+
+    <!-- öncelik -->
+    <div class="mb-3">
+      <label>Öncelik *</label>
+      <select class="form-select" formControlName="priority">
+        <option value="Düşük">Düşük</option>
+        <option value="Orta">Orta</option>
+        <option value="Yüksek">Yüksek</option>
+      </select>
+    </div>
+
+    <!-- durum sadece düzenleme modunda -->
+    <div class="mb-3" *ngIf="isEditMode">
+      <label>Durum *</label>
+      <select class="form-select" formControlName="status">
+        <option value="Yeni">Yeni</option>
+        <option value="Devam Ediyor">Devam Ediyor</option>
+        <option value="Tamamlandı">Tamamlandı</option>
+      </select>
+    </div>
+  </form>
 </div>
 
 <div class="modal-footer">
-    <button class="btn btn-secondary" (click)="activeModal.dismiss()">İptal</button>
-    <button class="btn btn-primary" (click)="activeModal.close()">Oluştur</button>
+  <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">İptal</button>
+  <button type="submit" class="btn btn-primary" (click)="submitForm()" [disabled]="loading">
+    <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+    {{ isEditMode ? 'Güncelle' : 'Ekle' }}
+  </button>
 </div>

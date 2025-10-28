@@ -1,20 +1,126 @@
 <div class="tasks-container p-4 bg-light min-vh-100">
-    <div class="d-flex justify-content-between align-items-center mb-1">
-  <h2 class="fs-3 fw-bold mb-1">Görevler</h2>
-   <button class="btn btn-primary" (click)="openModal()">
+
+  <!-- Başlık -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+      <h2 class="fs-3 fw-bold mb-1">Görevler</h2>
+      <p class="text-secondary mb-0">Tüm görevlerinizi görüntüleyin, önceliklerine göre yönetin.</p>
+    </div>
+    <button class="btn shadow-sm" (click)="openModal()" 
+            style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none;">
       <i class="bi bi-plus-lg me-2"></i> Yeni Görev
     </button>
   </div>
-  <p class="text-secondary mb-4">Tüm görevlerinizi yönetin.</p>
 
-  <div class="card border-0 shadow-sm">
-    <div class="card-body p-4">
-      <div class="text-center text-muted py-4">
-        <i class="bi bi-folder fs-1 d-block mb-2"></i>
-        <h4 class="fs-5 fw-bold text-dark mb-1">Henüz görev yok.</h4>
-        <p class="mb-0">İlk görevinizi oluşturarak başlayın.</p>
-        <button class="btn btn-primary mt-3">
-            <i class="bi bi-plus-lg me-2"></i>Görev Oluştur</button>
+  <!-- Yükleniyor -->
+  <div *ngIf="loading" class="text-center py-5 text-muted">
+    <div class="spinner-border" style="color: #667eea;" role="status"></div>
+    <p class="mt-3">Görevler yükleniyor...</p>
+  </div>
+
+  <!-- Görev Yoksa -->
+  <div *ngIf="!loading && filteredTasks.length === 0" class="card border-0 shadow-sm">
+  <div class="card-body p-4">
+    <div class="text-center text-muted py-4">
+      <div class="rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" 
+           style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+        <i class="bi bi-card-checklist fs-1 text-white"></i>
+      </div>
+      <h4 class="fs-5 fw-bold text-dark mb-2">Henüz görev bulunmuyor.</h4>
+      <p class="mb-3">Yeni bir görev oluşturarak başlayın.</p>
+      <button class="btn shadow-sm" (click)="openModal()"
+              style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none;">
+        <i class="bi bi-plus-lg me-2"></i> Görev Ekle
+      </button>
+    </div>
+  </div>
+</div>
+
+  <!-- Görev Kartları -->
+  <div *ngIf="!loading && filteredTasks.length > 0" class="row g-3">
+    <div *ngFor="let t of filteredTasks" class="col-12 col-md-6 col-lg-4">
+      <div class="card border-0 shadow-sm h-100 hover-shadow position-relative overflow-hidden">
+        <!-- Dekoratif üst çizgi -->
+        <div class="position-absolute top-0 start-0 w-100"></div>
+        
+        <div class="card-body p-4">
+
+          <!-- Başlık ve Menü -->
+          <div class="d-flex justify-content-between align-items-start mb-3">
+            <div class="d-flex flex-column flex-grow-1 me-2">
+              <h5 class="fw-bold mb-1 text-dark">{{ t.taskTitle }}</h5>
+              <small class="text-muted">
+                <i class="bi bi-folder me-1" style="color: #667eea;"></i>
+                {{ getProjectName(t.projectId) || 'Projeye bağlı değil' }}
+              </small>
+            </div>
+
+            <div class="dropdown">
+              <button class="btn btn-sm btn-light rounded-circle" type="button" data-bs-toggle="dropdown"
+                      style="width: 32px; height: 32px; padding: 0;">
+                <i class="bi bi-three-dots-vertical"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
+                <li>
+                  <button class="dropdown-item rounded" (click)="editTask(t)">
+                    <i class="bi bi-pencil me-2 text-primary"></i>Düzenle
+                  </button>
+                </li>
+                <li>
+                  <button class="dropdown-item rounded text-danger" (click)="deleteTask(t.id)">
+                    <i class="bi bi-trash me-2"></i>Sil
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Açıklama -->
+          <p class="text-secondary mb-3" style="font-size: 0.95rem; min-height: 48px;">
+            {{ t.taskDescription || 'Açıklama yok' }}
+          </p>
+
+          <!-- Durum ve Öncelik -->
+          <div class="d-flex gap-2 mb-3 flex-wrap">
+            <span class="badge rounded-pill px-3 py-2 text-uppercase fw-semibold"
+                  [ngClass]="{
+                    'bg-success text-white': t.status === 'Tamamlandı',
+                    'bg-warning text-dark': t.status === 'Devam Ediyor',
+                    'bg-secondary text-white': t.status === 'Yeni'
+                  }">
+              <i class="bi bi-check-circle me-1" *ngIf="t.status === 'Tamamlandı'"></i>
+              <i class="bi bi-hourglass-split me-1" *ngIf="t.status === 'Devam Ediyor'"></i>
+              <i class="bi bi-circle me-1" *ngIf="t.status === 'Yeni'"></i>
+              {{ t.status }}
+            </span>
+
+            <span class="badge rounded-pill px-3 py-2 fw-semibold"
+                  [ngClass]="{
+                    'bg-danger text-white': t.priority === 'Yüksek',
+                    'bg-warning text-dark': t.priority === 'Orta',
+                    'bg-success text-white': t.priority === 'Düşük'
+                  }">
+              <i class="bi bi-exclamation-circle me-1"></i>
+              {{ t.priority }}
+            </span>
+          </div>
+
+          <!-- Atanan Personel -->
+          <div class="d-flex align-items-center mb-3 p-2 rounded" style="background-color: #f8f9fa;">
+            <div class="rounded-circle d-flex align-items-center justify-content-center me-2" 
+                 style="width: 32px; height: 32px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+              <i class="bi bi-person text-white"></i>
+            </div>
+            <span class="fw-semibold text-dark">{{ getPersonnelName(t.assignedPersonnelId) || 'Atanmamış' }}</span>
+          </div>
+
+          <!-- Tarihler -->
+          <div class="text-muted small pt-3 border-top">
+            <i class="bi bi-clock me-1" style="color: #764ba2;"></i>
+            <span class="fw-semibold text-dark">{{ t.createdAt | date: 'dd/MM/yyyy HH:mm' }}</span>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>

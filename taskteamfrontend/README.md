@@ -20,8 +20,8 @@ ve dosya yükleme gibi temel yönetim özelliklerini bir araya getirir.
 ## 📸 Ekran Görüntüleri
 
 ### 🔐 Giriş ve Kayıt Ekranları
-![Giriş Yap](/taskteamimages/girisyap.png)
-![Kayıt Ol](/taskteamimages/kayitol.png)
+![Giriş Yap](taskteamimages/girisyap.png)
+![Kayıt Ol](taskteamimages/kayitol.png)
 
 ---
 
@@ -126,6 +126,7 @@ API’ler, CRUD işlemleri, dosya yükleme ve kullanıcı yönetimi gibi temel i
 - Personel görüntüleme ve silme işlemleri sadece **Admin rolü** ile yapılabilir.  
 - Dosya yükleme backend’de mevcut, frontend’de henüz gösterilmiyor; ileride arayüzü eklenecek.  
 - WebSocket ile gerçek zamanlı bildirim sistemi planlanıyor (örneğin yeni görev, harcama veya anket eklenince anında bildirim).
+
 
 
 

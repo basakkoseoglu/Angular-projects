@@ -62,6 +62,7 @@ ve dosya yükleme gibi temel yönetim özelliklerini bir araya getirir.
 
 Backend, **ASP.NET Core Web API** ile geliştirilmiştir ve JWT tabanlı güvenlik ile rol bazlı yetkilendirme sunar.  
 API’ler, CRUD işlemleri, dosya yükleme ve kullanıcı yönetimi gibi temel işlevleri sağlar.  
+Repo için: [Backend Proje Klasörü](https://github.com/basakkoseoglu/Backend-project/tree/master/taskteambackend)
 
 ### 🔐 Kimlik Doğrulama
 - **POST /api/Auth/login** → Kullanıcı giriş işlemi  
@@ -112,6 +113,7 @@ API’ler, CRUD işlemleri, dosya yükleme ve kullanıcı yönetimi gibi temel i
 - Personel görüntüleme ve silme işlemleri sadece **Admin rolü** ile yapılabilir.  
 - Dosya yükleme backend’de mevcut, frontend’de henüz gösterilmiyor; ileride arayüzü eklenecek.  
 - WebSocket ile gerçek zamanlı bildirim sistemi planlanıyor (örneğin yeni görev, harcama veya anket eklenince anında bildirim).
+
 
 
 

@@ -20,19 +20,18 @@ ve dosya yükleme gibi temel yönetim özelliklerini bir araya getirir.
 ## 📸 Ekran Görüntüleri
 
 <p align="center">
-  <img src="taskteamimages/dashboard.png" alt="Dashboard" width="45%" height="300px" style="object-fit: cover; margin-right: 10px;">
-  <img src="taskteamimages/projesayfasi.png" alt="Proje Sayfası" width="45%" height="300px" style="object-fit: cover;">
+  <img src="taskteamimages/dashboardekrani.png" alt="Dashboard" width="45%" height="300px" style="object-fit: cover; margin-right: 10px;">
+  <img src="taskteamimages/projelerekrani.png" alt="Proje Sayfası" width="45%" height="300px" style="object-fit: cover;">
 </p>
 
 <p align="center">
-  <img src="taskteamimages/görevsayfasi.png" alt="Görev Sayfası" width="45%" height="300px" style="object-fit: cover; margin-right: 10px;">
-  <img src="taskteamimages/personelsayfasi.png" alt="Personel Sayfası" width="45%" height="300px" style="object-fit: cover;">
+  <img src="taskteamimages/gorevlerekrani.png" alt="Görev Sayfası" width="45%" height="300px" style="object-fit: cover; margin-right: 10px;">
+  <img src="taskteamimages/personellerekrani.png" alt="Personel Sayfası" width="45%" height="300px" style="object-fit: cover;">
 </p>
 
 <p align="center">
-  <img src="taskteamimages/yetkibildirimi.png" alt="Yetki Bildirimi" width="45%" height="300px" style="object-fit: cover; margin-right: 10px;">
-  <img src="taskteamimages/girisyap.png" alt="Giriş Yap" width="45%" height="300px" style="object-fit: cover; margin-right: 10px;">
-  <img src="taskteamimages/kayitol.png" alt="Kayıt Ol" width="45%" height="300px" style="object-fit: cover;">
+  <img src="taskteamimages/erisimyokekrani.png" alt="Yetki Bildirimi" width="45%" height="300px" style="object-fit: cover; margin-right: 10px;">
+  <img src="taskteamimages/girisyapekrani.png" alt="Giriş Yap" width="45%" height="300px" style="object-fit: cover; margin-right: 10px;">
 </p>
 
 ---
@@ -113,6 +112,7 @@ API’ler, CRUD işlemleri, dosya yükleme ve kullanıcı yönetimi gibi temel i
 - Personel görüntüleme ve silme işlemleri sadece **Admin rolü** ile yapılabilir.  
 - Dosya yükleme backend’de mevcut, frontend’de henüz gösterilmiyor; ileride arayüzü eklenecek.  
 - WebSocket ile gerçek zamanlı bildirim sistemi planlanıyor (örneğin yeni görev, harcama veya anket eklenince anında bildirim).
+
 
 
 

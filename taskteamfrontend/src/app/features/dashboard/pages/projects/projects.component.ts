@@ -16,6 +16,7 @@ export class ProjectsComponent implements OnInit {
   loading = false;
   currentUser: any;
   private personnelNameMap: Record<string, string> = {};
+  private personnelRoleMap: Record<string, string> = {};
 
   constructor(
     private projectService: ProjectService,
@@ -42,10 +43,13 @@ export class ProjectsComponent implements OnInit {
       .then(([projects, personnels]) => {
         this.projects = projects || [];
         this.personnels = personnels || [];
-        this.personnelNameMap = this.personnels.reduce((acc, p) => {
-          acc[p.id] = `${p.firstName} ${p.lastName}`;
-          return acc;
-        }, {} as Record<string, string>);
+        this.personnelNameMap = {};
+        this.personnelRoleMap = {};
+        this.personnels.forEach(p => {
+        this.personnelNameMap[p.id] = `${p.firstName} ${p.lastName}`;
+        this.personnelRoleMap[p.id] = p.role || 'Bilinmeyen Rol';
+      });
+
 
         this.loading = false;
       })
@@ -59,6 +63,11 @@ export class ProjectsComponent implements OnInit {
   getOwnerName(ownerId?: string): string {
     if (!ownerId) return 'Bilinmeyen Kullanıcı';
     return this.personnelNameMap[ownerId] ?? 'Bilinmeyen Kullanıcı';
+  }
+
+  getOwnerRole(ownerId?: string): string {
+    if (!ownerId) return 'Bilinmeyen Rol';
+    return this.personnelRoleMap[ownerId] ?? 'Bilinmeyen Rol';
   }
 
   openModal(): void {

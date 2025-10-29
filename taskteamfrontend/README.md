@@ -19,37 +19,21 @@ ve dosya yükleme gibi temel yönetim özelliklerini bir araya getirir.
 
 ## 📸 Ekran Görüntüleri
 
-### 🔐 Giriş ve Kayıt Ekranları
 <p align="center">
+  <img src="taskteamimages/dashboard.png" alt="Dashboard" width="45%" height="300px" style="object-fit: cover; margin-right: 10px;">
+  <img src="taskteamimages/projesayfasi.png" alt="Proje Sayfası" width="45%" height="300px" style="object-fit: cover;">
+</p>
+
+<p align="center">
+  <img src="taskteamimages/görevsayfasi.png" alt="Görev Sayfası" width="45%" height="300px" style="object-fit: cover; margin-right: 10px;">
+  <img src="taskteamimages/personelsayfasi.png" alt="Personel Sayfası" width="45%" height="300px" style="object-fit: cover;">
+</p>
+
+<p align="center">
+  <img src="taskteamimages/yetkibildirimi.png" alt="Yetki Bildirimi" width="45%" height="300px" style="object-fit: cover; margin-right: 10px;">
   <img src="taskteamimages/girisyap.png" alt="Giriş Yap" width="45%" height="300px" style="object-fit: cover; margin-right: 10px;">
   <img src="taskteamimages/kayitol.png" alt="Kayıt Ol" width="45%" height="300px" style="object-fit: cover;">
 </p>
-
-
----
-
-### 🧭 Dashboard
-![Dashboard](taskteamimages/dashboard.png)
-
----
-
-### 📋 Proje Listesi
-![Proje Sayfası](taskteamimages/projesayfasi.png)
-
----
-
-### 🗂️ Görev Detay Sayfası
-![Görev Sayfası](taskteamimages/görevsayfasi.png)
-
----
-
-### 👥 Personel Yönetim Ekranı
-![Personel Sayfası](taskteamimages/personelsayfasi.png)
-
----
-
-### ⚙️ Yetki Bildirimi
-![Yetki Bildirimi](taskteamimages/yetkibildirimi.png)
 
 ---
 
@@ -129,6 +113,7 @@ API’ler, CRUD işlemleri, dosya yükleme ve kullanıcı yönetimi gibi temel i
 - Personel görüntüleme ve silme işlemleri sadece **Admin rolü** ile yapılabilir.  
 - Dosya yükleme backend’de mevcut, frontend’de henüz gösterilmiyor; ileride arayüzü eklenecek.  
 - WebSocket ile gerçek zamanlı bildirim sistemi planlanıyor (örneğin yeni görev, harcama veya anket eklenince anında bildirim).
+
 
 
 

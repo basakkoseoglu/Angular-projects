@@ -99,5 +99,9 @@ API’ler, CRUD işlemleri, dosya yükleme ve kullanıcı yönetimi gibi temel i
 
 ## ⚡ Notlar
 
-- Personel görüntüleme ve silme olayları sadece **Admin rolü** ile  yapılabilir  
-- Dosya yükleme backend’de mevcut fakat frontend’de henüz gösterilmedi.  
+- Personel görüntüleme ve silme işlemleri sadece **Admin rolü** ile yapılabilir.  
+- Dosya yükleme backend’de mevcut, frontend’de henüz gösterilmiyor; ileride arayüzü eklenecek.  
+- WebSocket ile gerçek zamanlı bildirim sistemi planlanıyor (örneğin yeni görev, harcama veya anket eklenince anında bildirim).
+
+
+

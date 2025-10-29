@@ -7,8 +7,7 @@
 
 **TaskTeam**, ekiplerin proje, görev ve personel yönetimini tek bir platform üzerinden kolayca yapabilmesi için geliştirilmiş tam entegre bir web uygulamasıdır.  
 
-Uygulama, sadece yazılım ekipleriyle sınırlı değildir — **her türden çalışma grubunun** (örneğin tasarım, pazarlama, Ar-Ge veya ofis ekipleri)  
-proje ve görev süreçlerini organize etmesini, ilerlemeyi takip etmesini ve ekip içi koordinasyonu artırmasını amaçlar.
+Uygulama, her türden çalışma grubunun proje ve görev süreçlerini organize etmesini, ilerlemeyi takip etmesini ve ekip içi koordinasyonu artırmasını amaçlar.
 
 Frontend kısmı **Angular**, backend kısmı **ASP.NET Core Web API**, veritabanı ise **PostgreSQL** teknolojileri kullanılarak geliştirilmiştir.  
 
@@ -113,6 +112,7 @@ Repo için: [Backend Proje Klasörü](https://github.com/basakkoseoglu/Backend-p
 - Personel görüntüleme ve silme işlemleri sadece **Admin rolü** ile yapılabilir.  
 - Dosya yükleme backend’de mevcut, frontend’de henüz gösterilmiyor; ileride arayüzü eklenecek.  
 - WebSocket ile gerçek zamanlı bildirim sistemi planlanıyor (örneğin yeni görev, harcama veya anket eklenince anında bildirim).
+
 
 
 

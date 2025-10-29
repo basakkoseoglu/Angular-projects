@@ -17,12 +17,36 @@ ve dosya yükleme gibi temel yönetim özelliklerini bir araya getirir.
 
 ---
 
-## 📸 Ekran Görüntüleri 
+## 📸 Ekran Görüntüleri
 
-- Dashboard ve proje listesi  
-- Görev detay sayfası  
-- Personel yönetim ekranı  
-- Yükleniyor ve boş durum kartları
+### 🔐 Giriş ve Kayıt Ekranları
+![Giriş Yap](/taskteamimages/girisyap.png)
+![Kayıt Ol](/taskteamimages/kayitol.png)
+
+---
+
+### 🧭 Dashboard
+![Dashboard](/taskteamimages/dashboard.png)
+
+---
+
+### 📋 Proje Listesi
+![Proje Sayfası](/taskteamimages/projesayfasi.png)
+
+---
+
+### 🗂️ Görev Detay Sayfası
+![Görev Sayfası](/taskteamimages/görevsayfasi.png)
+
+---
+
+### 👥 Personel Yönetim Ekranı
+![Personel Sayfası](/taskteamimages/personelsayfasi.png)
+
+---
+
+### ⚙️ Yetki Bildirimi
+![Yetki Bildirimi](/taskteamimages/yetkibildirimi.png)
 
 ---
 
@@ -102,6 +126,7 @@ API’ler, CRUD işlemleri, dosya yükleme ve kullanıcı yönetimi gibi temel i
 - Personel görüntüleme ve silme işlemleri sadece **Admin rolü** ile yapılabilir.  
 - Dosya yükleme backend’de mevcut, frontend’de henüz gösterilmiyor; ileride arayüzü eklenecek.  
 - WebSocket ile gerçek zamanlı bildirim sistemi planlanıyor (örneğin yeni görev, harcama veya anket eklenince anında bildirim).
+
 
 
 

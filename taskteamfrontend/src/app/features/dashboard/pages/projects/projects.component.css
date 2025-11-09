@@ -21,3 +21,39 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }
+
+.btn-custom{
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+  color: white; 
+  border: none;
+}
+
+.card-custom{
+  width: 80px; 
+  height: 80px; 
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.card-btn{
+  width: 32px; 
+  height: 32px; 
+  padding: 0;
+}
+
+.card-bg{
+  background-color: #f8f9fa;
+}
+
+.starticon-color{
+  color: #667eea;
+}
+
+.endicon-color{
+  color: #764ba2;
+}
+
+.user-circle{
+  width: 32px; 
+  height: 32px; 
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}

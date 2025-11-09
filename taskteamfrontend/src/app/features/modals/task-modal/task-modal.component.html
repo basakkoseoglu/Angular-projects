@@ -5,7 +5,6 @@
 
 <div class="modal-body">
   <form [formGroup]="taskForm" (ngSubmit)="submitForm()">
-    <!-- proje -->
     <div class="mb-3">
       <label>Proje *</label>
       <select class="form-select" formControlName="projectId">
@@ -14,7 +13,6 @@
       </select>
     </div>
 
-    <!-- personel -->
     <div class="mb-3">
       <label>Atanacak Personel *</label>
       <select class="form-select" formControlName="assignedPersonnelId">
@@ -25,19 +23,16 @@
       </select>
     </div>
 
-    <!-- başlık -->
     <div class="mb-3">
       <label>Görev Başlığı *</label>
       <input type="text" class="form-control" formControlName="taskTitle" />
     </div>
 
-    <!-- açıklama -->
     <div class="mb-3">
       <label>Görev Açıklaması *</label>
       <textarea class="form-control" formControlName="taskDescription" rows="3"></textarea>
     </div>
 
-    <!-- öncelik -->
     <div class="mb-3">
       <label>Öncelik *</label>
       <select class="form-select" formControlName="priority">
@@ -47,7 +42,6 @@
       </select>
     </div>
 
-    <!-- durum sadece düzenleme modunda -->
     <div class="mb-3" *ngIf="isEditMode">
       <label>Durum *</label>
       <select class="form-select" formControlName="status">

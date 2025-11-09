@@ -47,7 +47,7 @@
         <div class="col">
             <div class="card border-0 shadow-sm h-100 stat-card">
                 <div class="card-body text-center">
-                    <div class="icon-wrapper text-purple mx-auto" style="background-color: rgba(168, 85, 247, 0.1);">
+                    <div class="icon-wrapper text-purple mx-auto active-personel">
                         <i class="bi bi-people"></i>
                     </div>
                     <h3 class="fs-2 fw-bold mt-3">{{ activePersonnelCount }}</h3>
@@ -85,9 +85,7 @@
                             <p class="text-secondary small mb-3">{{ task.taskDescription || 'Açıklama yok' }}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <small class="text-muted">{{ task.createdAt | date:'dd/MM/yyyy' }}</small>
-                                <span class="badge rounded-pill"
-                                    style="background-color: #f8f9fa; color: #667eea; font-weight: 600;">{{ task.status
-                                    || 'Yeni' }}</span>
+                                <span class="badge rounded-pill status-style">{{ task.status || 'Yeni' }}</span>
                             </div>
                         </div>
                     </div>

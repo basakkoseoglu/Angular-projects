@@ -1,0 +1,30 @@
+.btn-custom{
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+    color: white; 
+    border: none;
+}
+
+.spinner-custom, .salary-custom, .icon-custom{
+    color: #667eea;
+}
+
+.table-custom{
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.role-custom{
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.button-custom{
+    width: 32px; 
+    height: 32px; 
+    padding: 0;
+}
+
+.empty-custom{
+    width: 80px; 
+    height: 80px; 
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}

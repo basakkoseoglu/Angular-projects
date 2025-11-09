@@ -29,3 +29,13 @@
   border-left-color: #198754;
   transform: translateY(-3px);
 }
+
+.active-personel{
+  background-color: rgba(168, 85, 247, 0.1);
+}
+
+.status-style{
+  background-color: #f8f9fa;
+  color: #667eea; 
+  font-weight: 600;
+}

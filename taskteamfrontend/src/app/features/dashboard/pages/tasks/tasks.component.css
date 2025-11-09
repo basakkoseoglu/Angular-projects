@@ -12,3 +12,45 @@
   font-size: 0.75rem;
   letter-spacing: 0.5px;
 }
+
+.btn-custom{
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+  color: white; 
+  border: none;
+}
+
+.spinner-custom, .folder-color{
+  color: #667eea;
+}
+
+.card-custom{
+  width: 80px;
+  height: 80px; 
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+
+.dropdown-custom{
+  width: 32px; 
+  height: 32px; 
+  padding: 0;
+}
+
+.p-custom{
+  font-size: 0.95rem; 
+  min-height: 48px;
+}
+
+.pbg-color{
+  background-color: #f8f9fa;
+}
+
+.personel-card{
+  width: 32px; 
+  height: 32px; 
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.clock-color{
+  color: #764ba2;
+}

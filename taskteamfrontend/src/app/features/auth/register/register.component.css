@@ -3,5 +3,20 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #1e1e2f; /* koyu mavi-mor ton */
+  background-color: #1e1e2f; 
+}
+
+.card{
+  width: 500px;
+  max-width: 90vw;
+}
+
+.register-logo{
+  font-size: 64px; 
+  color: #764ba2;
+}
+
+.btn-custom{
+  background-color: #764ba2; 
+  color: white;
 }

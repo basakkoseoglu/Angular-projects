@@ -43,7 +43,8 @@ export class PersonsComponent implements OnInit {
   openModal(): void {
     const modalRef = this.modalService.open(PersonelModalComponent, {
       size: 'lg',
-      backdrop: 'static'
+      backdrop: 'static',
+      centered:true
     });
 
     modalRef.result

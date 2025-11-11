@@ -20,7 +20,7 @@ ve dosya yükleme gibi temel yönetim özelliklerini bir araya getirir.
 
 <p align="center">
   <img src="taskteamimages/dashboardekrani.png" alt="Dashboard" width="45%" height="300px" style="object-fit: cover; margin-right: 10px;">
-  <img src="taskteamimages/projelerekraniguüncel.png" alt="Proje Sayfası" width="45%" height="300px" style="object-fit: cover;">
+  <img src="taskteamimages/projelerekranigüncel.png" alt="Proje Sayfası" width="45%" height="300px" style="object-fit: cover;">
 </p>
 
 <p align="center">
@@ -111,6 +111,7 @@ Repo için: [Backend Proje Klasörü](https://github.com/basakkoseoglu/Backend-p
 
 - Personel görüntüleme ve silme işlemleri sadece **Admin rolü** ile yapılabilir.  
 - WebSocket ile gerçek zamanlı bildirim sistemi planlanıyor (örneğin yeni görev, harcama veya anket eklenince anında bildirim).
+
 
 
 

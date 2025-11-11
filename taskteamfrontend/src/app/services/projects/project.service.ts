@@ -10,6 +10,7 @@ export interface ProjectCreateDto {
   OwnerId: string; 
   StartDate?: Date | null;
   EndDate?: Date | null;
+  FilePath?: string;
 }
 
 export interface ProjectReadDto {
@@ -21,7 +22,8 @@ export interface ProjectReadDto {
   endDate: string | null;       
   isActive: boolean;            
   projectCreatedAt: string;     
-  projectUpdatedAt: string;     
+  projectUpdatedAt: string; 
+  filePath?: string;    
 }
 
 @Injectable({

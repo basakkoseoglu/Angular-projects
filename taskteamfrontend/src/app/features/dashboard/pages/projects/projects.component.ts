@@ -4,6 +4,8 @@ import { ProjectModalComponent } from '../../../modals/project-modal/project-mod
 import { ProjectReadDto, ProjectService } from '../../../../services/projects/project.service';
 import { PersonelReadDto, PersonelService } from '../../../../services/personels/personel.service';
 import Swal from 'sweetalert2';
+import { environment } from '../../../../../environments/environment';
+import { UploadService } from '../../../../services/upload/upload.service';
 
 @Component({
   selector: 'app-projects',
@@ -21,7 +23,8 @@ export class ProjectsComponent implements OnInit {
   constructor(
     private projectService: ProjectService,
     private modalService: NgbModal,
-    private personelService: PersonelService) { }
+    private personelService: PersonelService,
+    private uploadService: UploadService) { }
 
   ngOnInit(): void {
     this.currentUser = {
@@ -46,10 +49,9 @@ export class ProjectsComponent implements OnInit {
         this.personnelNameMap = {};
         this.personnelRoleMap = {};
         this.personnels.forEach(p => {
-        this.personnelNameMap[p.id] = `${p.firstName} ${p.lastName}`;
-        this.personnelRoleMap[p.id] = p.role || 'Bilinmeyen Rol';
-      });
-
+          this.personnelNameMap[p.id] = `${p.firstName} ${p.lastName}`;
+          this.personnelRoleMap[p.id] = p.role || 'Bilinmeyen Rol';
+        });
 
         this.loading = false;
       })
@@ -102,7 +104,8 @@ export class ProjectsComponent implements OnInit {
       ProjectDescription: project.projectDescription,
       StartDate: project.startDate ? project.startDate.split('T')[0] : null,
       EndDate: project.endDate ? project.endDate.split('T')[0] : null,
-      OwnerId: project.ownerId
+      OwnerId: project.ownerId,
+      FilePath: project.filePath
     };
     modalRef.componentInstance.projectId = project.id;
 
@@ -145,38 +148,38 @@ export class ProjectsComponent implements OnInit {
             this.loadData();
           },
           error: (err) => {
-                      console.error('Silme hatası:', err);
-                      
-                      if (err.status === 403) {
-                        Swal.fire({
-                          icon: 'error',
-                          title: 'Yetkiniz Yok',
-                          text: 'Bu projeyi silme yetkiniz bulunmamaktadır.',
-                          confirmButtonColor: '#d33'
-                        });
-                      } else if (err.status === 401) {
-                        Swal.fire({
-                          icon: 'warning',
-                          title: 'Oturum Süreniz Doldu',
-                          text: 'Lütfen tekrar giriş yapın.',
-                          confirmButtonColor: '#3085d6'
-                        });
-                      } else if (err.status === 404) {
-                        Swal.fire({
-                          icon: 'error',
-                          title: 'Bulunamadı',
-                          text: 'Proje bulunamadı.',
-                          confirmButtonColor: '#d33'
-                        });
-                      } else {
-                        Swal.fire({
-                          icon: 'error',
-                          title: 'Hata',
-                          text: err.error?.message || 'Silme işlemi başarısız oldu.',
-                          confirmButtonColor: '#d33'
-                        });
-                      }
-                    }
+            console.error('Silme hatası:', err);
+
+            if (err.status === 403) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Yetkiniz Yok',
+                text: 'Bu projeyi silme yetkiniz bulunmamaktadır.',
+                confirmButtonColor: '#d33'
+              });
+            } else if (err.status === 401) {
+              Swal.fire({
+                icon: 'warning',
+                title: 'Oturum Süreniz Doldu',
+                text: 'Lütfen tekrar giriş yapın.',
+                confirmButtonColor: '#3085d6'
+              });
+            } else if (err.status === 404) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Bulunamadı',
+                text: 'Proje bulunamadı.',
+                confirmButtonColor: '#d33'
+              });
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: 'Hata',
+                text: err.error?.message || 'Silme işlemi başarısız oldu.',
+                confirmButtonColor: '#d33'
+              });
+            }
+          }
         });
       }
     });
@@ -185,5 +188,55 @@ export class ProjectsComponent implements OnInit {
   formatDate(date: string | null): string {
     if (!date) return '-';
     return new Date(date).toLocaleDateString('tr-TR');
+  }
+
+  getFileName(filePath: string | null | undefined): string {
+    if (!filePath) return 'Dosya';
+
+    const parts = filePath.split(/[\\/]/);
+    const fullFileName = parts[parts.length - 1] || 'Dosya';
+
+    const underscoreIndex = fullFileName.indexOf('_');
+    if (underscoreIndex > 0 && underscoreIndex < fullFileName.length - 1) {
+      return fullFileName.substring(underscoreIndex + 1);
+    }
+
+    return fullFileName;
+  }
+
+  private getOriginalFileName(filePath: string): string {
+    const parts = filePath.split(/[\\/]/);
+    const fullFileName = parts[parts.length - 1];
+    const underscoreIndex = fullFileName.indexOf('_');
+    return underscoreIndex >= 0 ? fullFileName.substring(underscoreIndex + 1) : fullFileName;
+  }
+
+  downloadFile(filePath: string | null | undefined): void {
+    if (!filePath) return;
+
+    const parts = filePath.split(/[\\/]/);
+    const fullFileName = parts[parts.length - 1];
+    const displayFileName = this.getOriginalFileName(filePath);
+
+    this.uploadService.downloadFile(fullFileName).subscribe({
+      next: (blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = displayFileName;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      },
+      error: (err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Hata',
+          text: 'Dosya indirilemedi.',
+          confirmButtonColor: '#d33'
+        });
+      }
+    });
   }
 }

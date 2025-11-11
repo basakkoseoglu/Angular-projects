@@ -3,6 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProjectCreateDto, ProjectService } from '../../../services/projects/project.service';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UploadService } from '../../../services/upload/upload.service';
 
 @Component({
   selector: 'app-project-modal',
@@ -16,11 +17,14 @@ export class ProjectModalComponent implements OnInit {
 
   projectForm!: FormGroup;
   loading = false;
+  selectedFile: File | null = null;
+  uploadedFilePath: string | null = null;
 
   constructor(
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private uploadService: UploadService
   ) {}
 
   ngOnInit(): void {
@@ -69,9 +73,15 @@ export class ProjectModalComponent implements OnInit {
       ProjectDescription: [''],
       OwnerId: [''],
       StartDate: [null],
-      EndDate: [null]
+      EndDate: [null],
+      FilePath: ['']
     });
   }
+
+  onFileSelected(event: any) {
+  this.selectedFile = event.target.files[0];
+}
+
 
   createProject(): void {
     if (this.projectForm.invalid) {
@@ -99,6 +109,37 @@ export class ProjectModalComponent implements OnInit {
 
     this.loading = true;
 
+ if (this.selectedFile) {
+  this.uploadService.uploadFile(this.selectedFile).subscribe({
+    next: (res) => {
+      console.log('Dosya yüklendi:', res);
+      
+      // ✅ Backend'in döndüğü field'a göre düzeltin
+      dto.FilePath = res.path; // veya res.Path - büyük/küçük harf önemli!
+      
+      console.log('DTO FilePath:', dto.FilePath); // ✅ Test için ekleyin
+      
+      this.saveProject(dto);
+    },
+    error: (err) => {
+      this.loading = false;
+      console.error('Dosya yükleme hatası:', err);
+      Swal.fire({
+        icon: 'error',
+        title: 'Dosya Yüklenemedi',
+        text: 'Lütfen tekrar deneyin.',
+        confirmButtonColor: '#d33'
+      });
+    }
+  });
+} else {
+  this.saveProject(dto);
+}
+
+
+  }
+
+  private saveProject(dto: ProjectCreateDto): void {
     if (this.projectId) {
       this.projectService.updateProject(this.projectId, dto).subscribe({
         next: () => {
@@ -147,4 +188,10 @@ export class ProjectModalComponent implements OnInit {
       });
     }
   }
+  
+  getFileName(filePath: string | null | undefined): string {
+  if (!filePath) return 'Dosya';
+  const parts = filePath.split(/[\\/]/);
+  return parts[parts.length - 1] || 'Dosya';
+}
 }

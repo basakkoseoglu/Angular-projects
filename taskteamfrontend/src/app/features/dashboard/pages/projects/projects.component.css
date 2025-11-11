@@ -57,3 +57,8 @@
   height: 32px; 
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
+
+.file-custom{
+  background-color: #f0f8ff; 
+  border-left: 3px solid #007bff;
+}

@@ -7,28 +7,37 @@
     <form [formGroup]="projectForm" (ngSubmit)="createProject()">
         <div class="mb-3">
             <label class="form-label">Proje Adı *</label>
-            <input 
-                type="text" 
-                class="form-control" 
-                placeholder="Proje adını girin" 
-                formControlName="ProjectName" 
-            />
-            <div *ngIf="projectForm.get('ProjectName')?.touched && projectForm.get('ProjectName')?.invalid" 
-                 class="text-danger mt-1">
+            <input type="text" class="form-control" placeholder="Proje adını girin" formControlName="ProjectName" />
+            <div *ngIf="projectForm.get('ProjectName')?.touched && projectForm.get('ProjectName')?.invalid"
+                class="text-danger mt-1">
                 Proje adı zorunludur.
             </div>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Açıklama</label>
-            <textarea 
-                class="form-control" 
-                rows="5" 
-                placeholder="Proje açıklaması (opsiyonel)" 
+            <textarea class="form-control" rows="5" placeholder="Proje açıklaması (opsiyonel)"
                 formControlName="ProjectDescription">
             </textarea>
         </div>
-    
+
+        <div class="mb-3">
+            <label class="form-label">Dosya Yükle (Opsiyonel)</label>
+
+            <div *ngIf="project?.FilePath && !selectedFile" class="alert alert-info d-flex align-items-center mb-2">
+                <i class="bi bi-file-earmark me-2"></i>
+                <span>Mevcut dosya: <strong>{{ getFileName(project?.FilePath) }}</strong></span>
+            </div>
+
+            <input type="file" class="form-control" (change)="onFileSelected($event)"
+                accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg" />
+            <div *ngIf="selectedFile" class="text-success mt-1">
+                <i class="bi bi-check-circle me-1"></i>{{ selectedFile.name }} seçildi
+            </div>
+        </div>
+
+
+
         <div class="mb-3 d-flex gap-2">
             <div class="flex-fill">
                 <label class="form-label">Başlangıç Tarihi</label>
@@ -46,11 +55,7 @@
     <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">
         İptal
     </button>
-    <button 
-        type="button" 
-        class="btn btn-primary" 
-        [disabled]="loading || projectForm.invalid" 
-        (click)="createProject()">
+    <button type="button" class="btn btn-primary" [disabled]="loading || projectForm.invalid" (click)="createProject()">
         <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
         {{ projectId ? 'Güncelle' : 'Kaydet' }}
     </button>

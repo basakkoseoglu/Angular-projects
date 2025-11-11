@@ -20,7 +20,7 @@ ve dosya yükleme gibi temel yönetim özelliklerini bir araya getirir.
 
 <p align="center">
   <img src="taskteamimages/dashboardekrani.png" alt="Dashboard" width="45%" height="300px" style="object-fit: cover; margin-right: 10px;">
-  <img src="taskteamimages/projelerekrani.png" alt="Proje Sayfası" width="45%" height="300px" style="object-fit: cover;">
+  <img src="taskteamimages/projelerekraniguüncel.png" alt="Proje Sayfası" width="45%" height="300px" style="object-fit: cover;">
 </p>
 
 <p align="center">
@@ -43,7 +43,7 @@ ve dosya yükleme gibi temel yönetim özelliklerini bir araya getirir.
   - User → Proje/görev ekleme, düzenleme ve görüntüleme  
 - 🧱 Proje & görev yönetimi (oluşturma, düzenleme, silme)  
 - 👨‍💼 Personel listesi (sadece Admin erişimi)  
-- 📂 Dosya yükleme API’si (.NET)  
+- 📂 Dosya yükleme
 - 🗃️ PostgreSQL fonksiyonlarıyla işlem kolaylığı  
 - 🧭 Modern, responsive Angular arayüzü  
 
@@ -52,7 +52,7 @@ ve dosya yükleme gibi temel yönetim özelliklerini bir araya getirir.
 ## 🖥️ Frontend Detayları
 
 - Angular ile SPA (Single Page Application) mimarisi  
-- Responsive tasarım ile farklı cihaz uyumluluğu  
+- UI/UX geliştirmeleri için Bootstrap ve custom CSS kullanıldı
 - Kullanıcı dostu form validasyonu ve hata mesajları  
 
 ---
@@ -110,8 +110,8 @@ Repo için: [Backend Proje Klasörü](https://github.com/basakkoseoglu/Backend-p
 ## ⚡ Notlar
 
 - Personel görüntüleme ve silme işlemleri sadece **Admin rolü** ile yapılabilir.  
-- Dosya yükleme backend’de mevcut, frontend’de henüz gösterilmiyor; ileride arayüzü eklenecek.  
 - WebSocket ile gerçek zamanlı bildirim sistemi planlanıyor (örneğin yeni görev, harcama veya anket eklenince anında bildirim).
+
 
 
 
